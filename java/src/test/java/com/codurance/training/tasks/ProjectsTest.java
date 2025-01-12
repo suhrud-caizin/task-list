@@ -34,10 +34,10 @@ public class ProjectsTest {
 
     @Test
     public void testTaskNotDoneByTaskId() throws Exception {
-        Projects projects = new Projects();
         Tasks tasks = new Tasks();
         Task task = new Task(1,"task1",true);
         tasks.add(task);
+        Projects projects = new Projects();
         projects.put("caizin",tasks);
 
         projects.setDoneByTaskId(task.getStringId(),false);
