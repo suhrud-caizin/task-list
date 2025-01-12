@@ -5,7 +5,6 @@ import java.io.*;
 public final class TaskList {
 
     private final Projects projects = new Projects();
-    private long lastId = 0;
     private final Writer writer;
 
     public TaskList(Writer writer) {
@@ -57,7 +56,7 @@ public final class TaskList {
         if (projectTasks == null) {
             throw new Exception(String.format("Could not find a project with the name \"%s\".", project));
         }
-        projectTasks.add(new Task(nextId(), description, false));
+        projectTasks.add(new Task( projects.nextId(), description, false));
     }
 
     private void check(String idString) throws Exception {
@@ -66,9 +65,5 @@ public final class TaskList {
 
     private void uncheck(String idString) throws Exception {
         projects.setDoneByTaskId(idString, false);
-    }
-
-    private long nextId() {
-        return ++lastId;
     }
 }

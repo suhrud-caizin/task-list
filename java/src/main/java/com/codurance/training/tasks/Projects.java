@@ -4,6 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Projects extends LinkedHashMap<String, Tasks> {
+    long lastId = 0;
 
     void setDoneByTaskId(String idString, boolean done) throws Exception {
         int id = Integer.parseInt(idString);
@@ -30,5 +31,9 @@ public class Projects extends LinkedHashMap<String, Tasks> {
         }
 
         return formatted.toString();
+    }
+
+    public long nextId() {
+        return ++lastId;
     }
 }
