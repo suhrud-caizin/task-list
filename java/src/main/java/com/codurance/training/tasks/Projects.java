@@ -1,7 +1,6 @@
 package com.codurance.training.tasks;
 
 import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class Projects extends LinkedHashMap<String, Project> {
     long lastId = 0;
