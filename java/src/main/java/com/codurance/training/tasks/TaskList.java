@@ -7,21 +7,12 @@ import java.util.List;
 import java.util.Map;
 
 public final class TaskList {
-    private static final String QUIT = "quit";
 
     private final Map<String, List<Task>> tasks = new LinkedHashMap<>();
 
 
     private long lastId = 0;
     private final Writer writer;
-
-    public static void main(String[] args) throws Exception {
-        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-        String command = in.readLine();
-
-        Writer writer = new StringWriter();
-        new TaskList(writer).execute(command);
-    }
 
     public TaskList(Writer writer) {
         this.writer = writer;
@@ -51,9 +42,16 @@ public final class TaskList {
             writer.write(project.getKey());
             writer.write("\n");
             for (Task task : project.getValue()) {
-                writer.write(String.format("[%c] %d: %s%n", (task.isDone() ? 'x' : ' '), task.getId(), task.getDescription()));
+                writer.write(
+                        getFormat(task)
+                );
             }
         }
+    }
+
+    // TODO move to Task class
+    private static String getFormat(Task task) {
+        return String.format("[%c] %d: %s%n", (task.isDone() ? 'x' : ' '), task.getId(), task.getDescription());
     }
 
     private void add(String commandLine) throws IOException {
@@ -100,10 +98,6 @@ public final class TaskList {
         }
         writer.write(String.format("Could not find a task with an ID of %d.", id));
     }
-
-
-
-
 
     private long nextId() {
         return ++lastId;
