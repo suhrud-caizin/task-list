@@ -43,15 +43,10 @@ public final class TaskList {
             writer.write("\n");
             for (Task task : project.getValue()) {
                 writer.write(
-                        getFormat(task)
+                        task.getFormatted()
                 );
             }
         }
-    }
-
-    // TODO move to Task class
-    private static String getFormat(Task task) {
-        return String.format("[%c] %d: %s%n", (task.isDone() ? 'x' : ' '), task.getId(), task.getDescription());
     }
 
     private void add(String commandLine) throws IOException {
