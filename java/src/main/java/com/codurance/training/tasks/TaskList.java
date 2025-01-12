@@ -13,7 +13,7 @@ public final class TaskList {
         this.writer = writer;
     }
 
-    public void execute(String commandLine) throws IOException {
+    public void execute(String commandLine) throws Exception {
         String[] commandRest = commandLine.split(" ", 2);
         String command = commandRest[0];
         switch (command) {
@@ -38,7 +38,7 @@ public final class TaskList {
          );
     }
 
-    private void add(String commandLine) throws IOException {
+    private void add(String commandLine) throws Exception {
         String[] subcommandRest = commandLine.split(" ", 2);
         String subcommand = subcommandRest[0];
         if (subcommand.equals("project")) {
@@ -53,11 +53,10 @@ public final class TaskList {
         projects.put(name, new Tasks());
     }
 
-    private void addTask(String project, String description) throws IOException {
+    private void addTask(String project, String description) throws Exception {
         Tasks projectTasks = projects.get(project);
         if (projectTasks == null) {
-            writer.write(String.format("Could not find a project with the name \"%s\".", project));
-            return;
+            throw new Exception(String.format("Could not find a project with the name \"%s\".", project));
         }
         projectTasks.add(new Task(nextId(), description, false));
     }
@@ -70,7 +69,13 @@ public final class TaskList {
         setDone(idString, false);
     }
 
+
     private void setDone(String idString, boolean done) throws IOException {
+        extractedSetDone(projects, idString, done, writer);
+    }
+
+    // TODO move to Projects class
+    private static void extractedSetDone(Projects projects, String idString, boolean done,  Writer writer) throws IOException {
         int id = Integer.parseInt(idString);
         for (Map.Entry<String, Tasks> project : projects.entrySet()) {
             for (Task task : project.getValue()) {
