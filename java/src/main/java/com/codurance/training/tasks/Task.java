@@ -20,6 +20,10 @@ public final class Task {
         return id;
     }
 
+    public String getStringId(){
+        return String.valueOf(id);
+    }
+
     public String getDescription() {
         return description;
     }

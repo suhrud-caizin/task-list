@@ -17,4 +17,32 @@ public class ProjectsTest {
                 projects.getProjectsFormatted()
         );
     }
+
+    @Test
+    public void testTaskDoneByTaskId() throws Exception {
+        Projects projects = new Projects();
+        Tasks tasks = new Tasks();
+        Task task = new Task(1,"task1",false);
+        tasks.add(task);
+        projects.put("caizin",tasks);
+
+        projects.setDoneByTaskId(task.getStringId(),true);
+
+        Assert.assertTrue(task.isDone());
+
+    }
+
+    @Test
+    public void testTaskNotDoneByTaskId() throws Exception {
+        Projects projects = new Projects();
+        Tasks tasks = new Tasks();
+        Task task = new Task(1,"task1",true);
+        tasks.add(task);
+        projects.put("caizin",tasks);
+
+        projects.setDoneByTaskId(task.getStringId(),false);
+
+        Assert.assertFalse(task.isDone());
+
+    }
 }

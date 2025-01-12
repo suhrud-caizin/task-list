@@ -1,7 +1,6 @@
 package com.codurance.training.tasks;
 
 import java.io.*;
-import java.util.Map;
 
 public final class TaskList {
 
@@ -61,31 +60,12 @@ public final class TaskList {
         projectTasks.add(new Task(nextId(), description, false));
     }
 
-    private void check(String idString) throws IOException {
-        setDone(idString, true);
+    private void check(String idString) throws Exception {
+        projects.setDoneByTaskId(idString, true);
     }
 
-    private void uncheck(String idString) throws IOException {
-        setDone(idString, false);
-    }
-
-
-    private void setDone(String idString, boolean done) throws IOException {
-        extractedSetDone(projects, idString, done, writer);
-    }
-
-    // TODO move to Projects class
-    private static void extractedSetDone(Projects projects, String idString, boolean done,  Writer writer) throws IOException {
-        int id = Integer.parseInt(idString);
-        for (Map.Entry<String, Tasks> project : projects.entrySet()) {
-            for (Task task : project.getValue()) {
-                if (task.getId() == id) {
-                    task.setDone(done);
-                    return;
-                }
-            }
-        }
-        writer.write(String.format("Could not find a task with an ID of %d.", id));
+    private void uncheck(String idString) throws Exception {
+        projects.setDoneByTaskId(idString, false);
     }
 
     private long nextId() {
