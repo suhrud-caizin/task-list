@@ -2,15 +2,13 @@ package com.codurance.training.tasks;
 
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
 
 public class TaskListTest {
 
     @Test
-    public void testExecuteWithAdditionOfAProjectContainingOneTask() throws IOException {
+    public void testExecuteWithAdditionOfAProjectContainingOneTask() throws Exception {
         Writer writer = new StringWriter();
         TaskList taskList = new TaskList(writer);
 
@@ -27,7 +25,7 @@ public class TaskListTest {
     }
 
     @Test
-    public void testExecuteWithAdditionOfAProjectContainingCoupleOfTask() throws IOException {
+    public void testExecuteWithAdditionOfAProjectContainingCoupleOfTask() throws Exception {
         Writer writer = new StringWriter();
         TaskList taskList = new TaskList(writer);
 
