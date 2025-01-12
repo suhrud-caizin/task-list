@@ -1,14 +1,12 @@
 package com.codurance.training.tasks;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 public final class TaskList {
 
-    private final Map<String, List<Task>> tasks = new LinkedHashMap<>();
+    private final Map<String, Tasks> projects = new LinkedHashMap<>();
 
 
     private long lastId = 0;
@@ -38,14 +36,12 @@ public final class TaskList {
     }
 
     private void show() throws IOException {
-        for (Map.Entry<String, List<Task>> project : tasks.entrySet()) {
+        for (Map.Entry<String, Tasks> project : projects.entrySet()) {
             writer.write(project.getKey());
             writer.write("\n");
-            for (Task task : project.getValue()) {
-                writer.write(
-                        task.getFormatted()
-                );
-            }
+            writer.write(
+                project.getValue().getFormatted()
+            );
         }
     }
 
@@ -61,11 +57,11 @@ public final class TaskList {
     }
 
     private void addProject(String name) {
-        tasks.put(name, new ArrayList<Task>());
+        projects.put(name, new Tasks());
     }
 
     private void addTask(String project, String description) throws IOException {
-        List<Task> projectTasks = tasks.get(project);
+        Tasks projectTasks = projects.get(project);
         if (projectTasks == null) {
             writer.write(String.format("Could not find a project with the name \"%s\".", project));
             return;
@@ -83,7 +79,7 @@ public final class TaskList {
 
     private void setDone(String idString, boolean done) throws IOException {
         int id = Integer.parseInt(idString);
-        for (Map.Entry<String, List<Task>> project : tasks.entrySet()) {
+        for (Map.Entry<String, Tasks> project : projects.entrySet()) {
             for (Task task : project.getValue()) {
                 if (task.getId() == id) {
                     task.setDone(done);
