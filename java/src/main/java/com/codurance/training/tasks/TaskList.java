@@ -1,14 +1,11 @@
 package com.codurance.training.tasks;
 
 import java.io.*;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 public final class TaskList {
 
-    private final Map<String, Tasks> projects = new LinkedHashMap<>();
-
-
+    private final Projects projects = new Projects();
     private long lastId = 0;
     private final Writer writer;
 
@@ -36,13 +33,9 @@ public final class TaskList {
     }
 
     private void show() throws IOException {
-        for (Map.Entry<String, Tasks> project : projects.entrySet()) {
-            writer.write(project.getKey());
-            writer.write("\n");
-            writer.write(
-                project.getValue().getFormatted()
-            );
-        }
+         writer.write(
+                 projects.getProjectsFormatted()
+         );
     }
 
     private void add(String commandLine) throws IOException {
