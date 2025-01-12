@@ -48,15 +48,15 @@ public final class TaskList {
     }
 
     private void addProject(String name) {
-        projects.put(name, new Tasks());
+        projects.put(name, new Project(name));
     }
 
-    private void addTask(String project, String description) throws Exception {
-        Tasks projectTasks = projects.get(project);
-        if (projectTasks == null) {
-            throw new Exception(String.format("Could not find a project with the name \"%s\".", project));
+    private void addTask(String projectName, String description) throws Exception {
+        Project project = projects.get(projectName);
+        if (project == null) {
+            throw new Exception(String.format("Could not find a project with the name \"%s\".", projectName));
         }
-        projectTasks.add(new Task( projects.nextId(), description, false));
+        project.add(new Task( projects.nextId(), description, false));
     }
 
     private void check(String idString) throws Exception {

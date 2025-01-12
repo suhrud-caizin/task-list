@@ -17,7 +17,7 @@ public class TaskListTest {
         taskList.execute("show");
 
 
-        String expected = "caizin\n"+"[ ] 1: task1" + "\r\n";
+        String expected = "caizin\r\n"+"[ ] 1: task1" + "\r\n";
         String actual = writer.toString();
 
         Assert.assertEquals(expected,actual);
@@ -35,7 +35,7 @@ public class TaskListTest {
         taskList.execute("show");
 
 
-        String expected = "caizin\n"+"[ ] 1: task1" + "\r\n" + "[ ] 2: task2" + "\r\n";
+        String expected = "caizin\r\n"+"[ ] 1: task1" + "\r\n" + "[ ] 2: task2" + "\r\n";
         String actual = writer.toString();
 
         Assert.assertEquals(expected,actual);

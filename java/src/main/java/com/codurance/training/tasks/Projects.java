@@ -3,18 +3,14 @@ package com.codurance.training.tasks;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class Projects extends LinkedHashMap<String, Tasks> {
+public class Projects extends LinkedHashMap<String, Project> {
     long lastId = 0;
 
     void setDoneByTaskId(String idString, boolean done) throws Exception {
         int id = Integer.parseInt(idString);
-        for (Map.Entry<String, Tasks> project : this.entrySet()) {
-            for (Task task : project.getValue()) {
-                if (task.getId() == id) {
-                    task.setDone(done);
-                    return;
-                }
-            }
+
+        for (Project project : values()) {
+            if (project.setDone(id,done)) return;
         }
         throw new Exception(String.format("Could not find a task with an ID of %d.", id));
     }
@@ -22,17 +18,16 @@ public class Projects extends LinkedHashMap<String, Tasks> {
     public String getProjectsFormatted() {
          StringBuilder formatted = new StringBuilder();
 
-        for (Map.Entry<String, Tasks> project : entrySet()) {
-            formatted.append(project.getKey());
-            formatted.append("\n");
+        for (Project project : values()) {
             formatted.append(
-                project.getValue().getFormatted()
+                project.getTasksForProjectFormatted()
             );
         }
 
         return formatted.toString();
     }
 
+    // TODO: move this as static field to Task class
     public long nextId() {
         return ++lastId;
     }
