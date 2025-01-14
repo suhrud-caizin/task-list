@@ -5,7 +5,7 @@ import java.util.LinkedHashMap;
 public class Projects extends LinkedHashMap<String, Project> {
     long lastId = 0;
 
-    void setDoneByTaskId(String idString, boolean done) throws Exception {
+    public void setDoneByTaskId(String idString, boolean done) throws Exception {
         int id = Integer.parseInt(idString);
 
         for (Project project : values()) {
@@ -26,7 +26,6 @@ public class Projects extends LinkedHashMap<String, Project> {
         return formatted.toString();
     }
 
-    // TODO: move this as static field to Task class
     public long nextId() {
         return ++lastId;
     }
