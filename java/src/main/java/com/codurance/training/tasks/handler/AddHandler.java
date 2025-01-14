@@ -3,8 +3,6 @@ package com.codurance.training.tasks.handler;
 import com.codurance.training.tasks.Project;
 import com.codurance.training.tasks.Projects;
 import com.codurance.training.tasks.Task;
-import com.codurance.training.tasks.handler.Handler;
-
 import java.io.Writer;
 import java.util.List;
 

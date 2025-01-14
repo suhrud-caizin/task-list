@@ -1,7 +1,6 @@
 package com.codurance.training.tasks.handler;
 
 import com.codurance.training.tasks.Projects;
-import com.codurance.training.tasks.handler.Handler;
 
 import java.io.IOException;
 import java.io.Writer;
