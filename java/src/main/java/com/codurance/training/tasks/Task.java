@@ -11,7 +11,7 @@ public final class Task {
         this.done = done;
     }
 
-    String getFormatted() {
+    String format() {
         return String.format("[%c] %d: %s%n", (this.isDone() ? 'x' : ' '), this.getId(), this.getDescription());
     }
 

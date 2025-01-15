@@ -5,11 +5,11 @@ import java.util.ArrayList;
 
 public class Tasks extends ArrayList<Task> {
 
-    String getFormatted(){
+    String format(){
         StringBuilder formatted = new StringBuilder();
 
         for (Task task : this) {
-            formatted.append(task.getFormatted());
+            formatted.append(task.format());
         }
 
         return formatted.toString();

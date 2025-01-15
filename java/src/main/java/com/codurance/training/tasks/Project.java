@@ -19,9 +19,9 @@ public class Project {
         return false;
     }
 
-    public String getTasksForProjectFormatted(){
+    public String format(){
         return getName() + "\r\n" +
-                tasks.getFormatted();
+                tasks.format();
     }
 
     public String getName(){

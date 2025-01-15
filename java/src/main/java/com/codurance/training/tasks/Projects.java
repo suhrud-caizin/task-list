@@ -14,12 +14,12 @@ public class Projects extends LinkedHashMap<String, Project> {
         throw new Exception(String.format("Could not find a task with an ID of %d.", id));
     }
 
-    public String getProjectsFormatted() {
+    public String format() {
          StringBuilder formatted = new StringBuilder();
 
         for (Project project : values()) {
             formatted.append(
-                project.getTasksForProjectFormatted()
+                project.format()
             );
         }
 

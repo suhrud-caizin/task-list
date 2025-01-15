@@ -12,7 +12,7 @@ public class ProjectTest {
         String expected = "DQS%n" +
                 "[ ] 1: t1%n" +
                 "[ ] 2: t2%n";
-        Assert.assertEquals(String.format(expected),project.getTasksForProjectFormatted());
+        Assert.assertEquals(String.format(expected),project.format());
 
     }
 }

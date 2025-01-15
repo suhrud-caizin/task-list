@@ -6,19 +6,19 @@ import com.codurance.training.tasks.Task;
 import java.io.Writer;
 import java.util.List;
 
-public class AddHandler implements Handler {
+public class AddExecutor implements CommandExecutor {
     Projects projects;
     Writer writer;
     List<String> args;
 
-    public AddHandler(Projects projects, Writer writer, List<String> args) {
+    public AddExecutor(Projects projects, Writer writer, List<String> args) {
         this.projects = projects;
         this.writer = writer;
         this.args = args;
     }
 
     @Override
-    public void handle() throws Exception {
+    public void execute() throws Exception {
         String subcommand = args.get(0);
         String projectName = args.get(1);
         if (subcommand.equals("project")) {

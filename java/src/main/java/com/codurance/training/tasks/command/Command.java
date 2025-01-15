@@ -1,10 +1,10 @@
 package com.codurance.training.tasks.command;
 
 import com.codurance.training.tasks.Projects;
-import com.codurance.training.tasks.handler.AddHandler;
-import com.codurance.training.tasks.handler.CheckHandler;
-import com.codurance.training.tasks.handler.Handler;
-import com.codurance.training.tasks.handler.ShowHandler;
+import com.codurance.training.tasks.handler.AddExecutor;
+import com.codurance.training.tasks.handler.CheckExecutor;
+import com.codurance.training.tasks.handler.CommandExecutor;
+import com.codurance.training.tasks.handler.ShowExecutor;
 
 import java.io.Writer;
 import java.util.List;
@@ -13,20 +13,19 @@ public class Command {
             CommandType type;
             List<String> args;
             Projects projects;
-            Handler handler;
+            CommandExecutor commandExecutor;
             Writer writer;
 
             public Command(CommandBuilder builder){
                 this.type = builder.type;
                 this.args =  builder.args;
                 this.projects = builder.projects;
-                this.handler = builder.handler;
+                this.commandExecutor = builder.commandExecutor;
                 this.writer = builder.writer;
             }
 
             public void execute() throws Exception {
-                // execute
-                handler.handle();
+                commandExecutor.execute();
             }
 
     public static class CommandBuilder{
@@ -34,7 +33,7 @@ public class Command {
         List<String> args;
 
         Projects projects;
-        Handler handler;
+        CommandExecutor commandExecutor;
 
         Writer writer;
 
@@ -54,7 +53,7 @@ public class Command {
         }
 
         public Command build() throws Exception {
-            this.handler = getHandler(type);
+            this.commandExecutor = getHandler(type);
 
             if(projects == null){
                 throw new Exception("projects not set");
@@ -66,16 +65,16 @@ public class Command {
             return new Command(this);
         }
 
-        private Handler getHandler(CommandType type) throws Exception {
+        private CommandExecutor getHandler(CommandType type) throws Exception {
             switch (type){
                 case SHOW:
-                    return new ShowHandler(projects,writer);
+                    return new ShowExecutor(projects,writer);
                 case ADD:
-                    return new AddHandler(projects,writer,args);
+                    return new AddExecutor(projects,writer,args);
                 case CHECK:
-                    return new CheckHandler(projects,args,true);
+                    return new CheckExecutor(projects,args,true);
                 case UNCHECK:
-                    return new CheckHandler(projects,args,false);
+                    return new CheckExecutor(projects,args,false);
                 default:
                     throw new Exception("Unsupported command.");
             }
