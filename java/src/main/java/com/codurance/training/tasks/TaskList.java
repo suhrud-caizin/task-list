@@ -22,7 +22,6 @@ public final class TaskList {
                 .build();
 
         command.execute();
-
     }
 
 }
