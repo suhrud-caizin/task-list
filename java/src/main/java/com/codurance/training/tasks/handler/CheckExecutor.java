@@ -3,8 +3,6 @@ package com.codurance.training.tasks.handler;
 import com.codurance.training.tasks.Projects;
 import com.codurance.training.tasks.command.Arguments;
 
-import java.util.List;
-
 public class CheckExecutor implements CommandExecutor {
 
     Projects projects;

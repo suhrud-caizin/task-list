@@ -1,8 +1,6 @@
 package com.codurance.training.tasks.command;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class CommandParser {
     public static Command.CommandBuilder parse(String command){
