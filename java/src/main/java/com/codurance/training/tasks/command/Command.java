@@ -7,11 +7,10 @@ import com.codurance.training.tasks.handler.CommandExecutor;
 import com.codurance.training.tasks.handler.ShowExecutor;
 
 import java.io.Writer;
-import java.util.List;
 
 public class Command {
             CommandType type;
-            List<String> args;
+            Arguments args;
             Projects projects;
             CommandExecutor commandExecutor;
             Writer writer;
@@ -30,14 +29,14 @@ public class Command {
 
     public static class CommandBuilder{
         CommandType type;
-        List<String> args;
+        Arguments args;
 
         Projects projects;
         CommandExecutor commandExecutor;
 
         Writer writer;
 
-        public CommandBuilder(CommandType type, List<String> args){
+        public CommandBuilder(CommandType type, Arguments args){
             this.type = type;
             this.args = args;
         }

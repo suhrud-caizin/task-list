@@ -3,15 +3,15 @@ package com.codurance.training.tasks.handler;
 import com.codurance.training.tasks.Project;
 import com.codurance.training.tasks.Projects;
 import com.codurance.training.tasks.Task;
+import com.codurance.training.tasks.command.Arguments;
 import java.io.Writer;
-import java.util.List;
 
 public class AddExecutor implements CommandExecutor {
     Projects projects;
     Writer writer;
-    List<String> args;
+    Arguments args;
 
-    public AddExecutor(Projects projects, Writer writer, List<String> args) {
+    public AddExecutor(Projects projects, Writer writer, Arguments args) {
         this.projects = projects;
         this.writer = writer;
         this.args = args;

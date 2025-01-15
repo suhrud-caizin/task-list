@@ -1,16 +1,17 @@
 package com.codurance.training.tasks.handler;
 
 import com.codurance.training.tasks.Projects;
+import com.codurance.training.tasks.command.Arguments;
 
 import java.util.List;
 
 public class CheckExecutor implements CommandExecutor {
 
     Projects projects;
-    List<String> args;
+    Arguments args;
     boolean isDone;
 
-    public CheckExecutor(Projects projects, List<String> args, boolean isDone) {
+    public CheckExecutor(Projects projects,Arguments args, boolean isDone) {
         this.projects = projects;
         this.args = args;
         this.isDone = isDone;

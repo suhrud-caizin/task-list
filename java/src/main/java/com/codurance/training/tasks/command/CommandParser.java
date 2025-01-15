@@ -7,12 +7,12 @@ import java.util.List;
 public class CommandParser {
     public static Command.CommandBuilder parse(String command){
         String[] query =  command.split(" ",2);
-        List<String> args;      //TODO: create an immutable abstraction for the arguments
+        Arguments args;      //TODO: create an immutable abstraction for the arguments
 
         if(query.length > 1){
-            args = Arrays.asList(query[1].split(" "));
+            args = new Arguments(Arrays.asList(query[1].split(" ")));
         }else {
-            args = new ArrayList<>();
+            args = new Arguments();
         }
 
         CommandType type = CommandType.fromString(query[0]);
